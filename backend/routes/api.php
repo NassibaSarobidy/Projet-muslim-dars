@@ -21,7 +21,7 @@ Route::get('/login', function () {
     return view('login');
 })->name('login');
 
-Route::middleware('auth:sanctum')->group(function () {
+/*Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/admin-test', function () {
         return "Bienvenue Admin";
@@ -29,4 +29,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::post('/admin/contenus', [AdminContenuController::class, 'store']);
 
-});
+});*/
+
+Route::post('/admin/contenus', [AdminContenuController::class, 'store']);

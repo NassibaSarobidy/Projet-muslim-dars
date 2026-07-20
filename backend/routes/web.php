@@ -6,6 +6,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/login', function () {
+/*Route::get('/login', function () {
     return view('login');
-})->name('login');
+})->name('login');*/
+
+Route::get('/upload', function () {
+    return view('upload');
+});
