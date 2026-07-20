@@ -2,14 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
+
 Route::get('/', function () {
-    return view('welcome');
-});
-
-/*Route::get('/login', function () {
-    return view('login');
-})->name('login');*/
-
-Route::get('/upload', function () {
-    return view('upload');
+    return response()->json([
+        'message' => 'API Muslim Dars fonctionne'
+    ]);
 });
