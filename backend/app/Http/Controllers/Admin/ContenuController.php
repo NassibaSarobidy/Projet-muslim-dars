@@ -9,6 +9,14 @@ use Illuminate\Support\Facades\Auth;
 
 class ContenuController extends Controller
 {
+    public function index()
+{
+    $contenus = Contenu::orderBy('created_at', 'desc')->get();
+
+    return response()->json($contenus);
+}
+
+
     public function store(Request $request)
     {
         $request->validate([

@@ -36,6 +36,8 @@ Route::post('/login', [AuthController::class, 'login']);
 
 Route::middleware('auth:sanctum')->group(function () {
 
-    Route::post('/admin/contenus', [AdminContenuController::class, 'store']);
+    Route::get('/admin/contenus', [AdminContenuController::class, 'index']);
+
+     Route::post('/admin/contenus', [AdminContenuController::class, 'store']);
 
 });
