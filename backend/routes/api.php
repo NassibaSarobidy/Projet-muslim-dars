@@ -38,8 +38,11 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/admin/contenus', [AdminContenuController::class, 'index']);
 
-     Route::post('/admin/contenus', [AdminContenuController::class, 'store']);
+    Route::post('/admin/contenus', [AdminContenuController::class, 'store']);
+
+    Route::put('/admin/contenus/{id}', [AdminContenuController::class, 'update']);
+
+    Route::delete('/admin/contenus/{id}', [AdminContenuController::class, 'destroy']);
 
 });
 
-Route::put('/admin/contenus/{id}', [AdminContenuController::class, 'update']);

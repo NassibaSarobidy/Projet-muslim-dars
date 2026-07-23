@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Contenu;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+
 
 class ContenuController extends Controller
 {
@@ -55,6 +57,23 @@ class ContenuController extends Controller
 
     return response()->json([
         'message' => 'Contenu modifié'
+    ]);
+}
+
+
+
+    public function destroy($id)
+{
+        $contenu = Contenu::findOrFail($id);
+
+        if (Storage::exists($contenu->audio)) {
+            Storage::delete($contenu->audio);
+    }
+
+        $contenu->delete();
+
+        return response()->json([
+            'message' => 'Contenu supprimé avec succès'
     ]);
 }
 }
