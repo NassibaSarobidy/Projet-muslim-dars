@@ -43,20 +43,35 @@ class ContenuController extends Controller
 
     public function update(Request $request, $id)
 {
+    
     $contenu = Contenu::findOrFail($id);
 
     $request->validate([
         'titre' => 'required',
-        'type' => 'required|in:dars,khoutba'
+        'type' => 'required|in:dars,khoutba',
+        'audio' => 'nullable|file|mimes:mp3,wav,ogg'
     ]);
 
-    $contenu->update([
-        'titre' => $request->titre,
-        'type' => $request->type
-    ]);
+    // Si un nouveau fichier est envoyé
+    if ($request->hasFile('audio')) {
+
+        // Supprimer l'ancien fichier
+        if (Storage::exists($contenu->audio)) {
+            Storage::delete($contenu->audio);
+        }
+
+        // Enregistrer le nouveau
+        $contenu->audio = $request->file('audio')->store('audios');
+    }
+
+    $contenu->titre = $request->titre;
+    $contenu->type = $request->type;
+
+    $contenu->save();
 
     return response()->json([
-        'message' => 'Contenu modifié'
+        'message' => 'Contenu modifié avec succès',
+        'contenu' => $contenu
     ]);
 }
 
