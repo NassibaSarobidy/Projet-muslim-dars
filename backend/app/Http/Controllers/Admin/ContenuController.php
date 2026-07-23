@@ -27,7 +27,7 @@ class ContenuController extends Controller
             'type' => 'required|in:dars,khoutba'
         ]);
 
-        $audioPath = $request->file('audio')->store('audios');
+        $audioPath = $request->file('audio')->store('audios', 'public');
 
         Contenu::create([
             'titre' => $request->titre,
@@ -61,7 +61,7 @@ class ContenuController extends Controller
         }
 
         // Enregistrer le nouveau
-        $contenu->audio = $request->file('audio')->store('audios');
+        $contenu->audio = $request->file('audio')->store('audios', 'public');
     }
 
     $contenu->titre = $request->titre;
