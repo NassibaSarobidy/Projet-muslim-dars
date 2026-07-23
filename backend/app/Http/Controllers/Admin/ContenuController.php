@@ -38,4 +38,23 @@ class ContenuController extends Controller
             'message' => 'Contenu ajouté avec succès'
         ]);
     }
+
+    public function update(Request $request, $id)
+{
+    $contenu = Contenu::findOrFail($id);
+
+    $request->validate([
+        'titre' => 'required',
+        'type' => 'required|in:dars,khoutba'
+    ]);
+
+    $contenu->update([
+        'titre' => $request->titre,
+        'type' => $request->type
+    ]);
+
+    return response()->json([
+        'message' => 'Contenu modifié'
+    ]);
+}
 }

@@ -41,3 +41,5 @@ Route::middleware('auth:sanctum')->group(function () {
      Route::post('/admin/contenus', [AdminContenuController::class, 'store']);
 
 });
+
+Route::put('/admin/contenus/{id}', [AdminContenuController::class, 'update']);
