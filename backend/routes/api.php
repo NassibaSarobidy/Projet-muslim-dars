@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ContenuController;
 use App\Http\Controllers\Admin\ContenuController as AdminContenuController;
+use App\Http\Controllers\Admin\ProfileController as ProfileController;
 
 
 // Utilisateur connecté
@@ -43,6 +44,12 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/admin/contenus/{id}', [AdminContenuController::class, 'update']);
 
     Route::delete('/admin/contenus/{id}', [AdminContenuController::class, 'destroy']);
+
+     // Profil
+    Route::get('/admin/profile', [ProfileController::class, 'show']);
+    Route::put('/admin/profile', [ProfileController::class, 'update']);
+     Route::put('/admin/profile/password', [ProfileController::class, 'updatePassword']);
+
 
 });
 
